@@ -4,41 +4,42 @@ import { FETCH_SMURF_LOADING, FETCH_SMURF_SUCCESS, FETCH_SMURF_FAIL, ADD_SMURF, 
 export const initialState = {
         smurfs:[],
         isLoading: false,
-        error: '',
+        error: null,
 }
 
 export const reducer = (state = initialState, action) => {
 
     //Switch Statement Here --------------------------------------------------
     switch(action.type) {
-        case(FETCH_SMURF_LOADING): //This starts the fetch! 
+        case FETCH_SMURF_LOADING: //This starts the fetch! 
             return({
                 ...state,
-                isLoading: true
+                isLoading: true,
+                error:''
             });
-        case(FETCH_SMURF_SUCCESS): //Sets up state upon a successful fetch!
+        case FETCH_SMURF_SUCCESS: //Sets up state upon a successful fetch!
             return({
-                smurfs:[],
-                isLoading: false
+                smurfs: action.payload,
+                isLoading: false,
+                error: ''
             });
-        case(FETCH_SMURF_FAIL): //Sets up state upon a failed fetch!
+        case FETCH_SMURF_FAIL: //Sets up state upon a failed fetch!
             return({
                 ...state,
-                error: action.payload,
-                isLoading: false
+                error: 'Looks like something went wrong'
             });
-        case(ADD_SMURF): //Sets up state when a new smurf is added in!
+        case ADD_SMURF: //Sets up state when a new smurf is added in!
             return({
                 ...state,
                 isLoading: false,
                 error: '',
-                smurfs: [...state.smurfs, {id: Date.now(), ...action.payload}]
+                smurfs: [...state.smurfs, action.payload]
             });
-        case(SET_ERROR)://Sets up state when there is an error in the form!
+        case SET_ERROR://Sets up state when there is an error in the form!
             return ({
                 ...state,
                 isLoading: false,
-                error: action.payload
+                error: 'Something went Wrong'
             })
         default: //Returns the initial state if none of the above cases are true!
             return state;

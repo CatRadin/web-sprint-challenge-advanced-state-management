@@ -11,15 +11,15 @@ import { connect } from 'react-redux'
 
     //Mapping over the smurfs in the array and returns them as individualized smurfs--------------
     return(<div className="listContainer">
-        {props.smurfs.map((smurf) => (
-            <Smurf key={smurf.id} smurf={smurf}/>
-        ))}
+        {props.smurfs.map(smurf => {
+            return <Smurf smurf={smurf} />
+        })}
     </div>);
 }
 
 //Map State To Props The State I am passing into this component using Redux --------------------------------
 const mapStateToProps = state => {
-    return {
+    return{
         smurfs: state.smurfs,
         isLoading: state.isLoading
     }
