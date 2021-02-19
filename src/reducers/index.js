@@ -1,3 +1,4 @@
+import { FETCH_SMURF_LOADING, FETCH_SMURF_SUCCESS, FETCH_SMURF_FAIL, ADD_SMURF, SET_ERROR } from '../actions'
 
 //Initial State Here --------------------------------------------------
 export const initialState = {
@@ -10,30 +11,30 @@ export const reducer = (state = initialState, action) => {
 
     //Switch Statement Here --------------------------------------------------
     switch(action.type) {
-        case("FETCH_SMURF_LOADING"): //This starts the fetch! 
+        case(FETCH_SMURF_LOADING): //This starts the fetch! 
             return({
                 ...state,
                 isLoading: true
             });
-        case("FETCH_SMURF_SUCCESS"): //Sets up state upon a successful fetch!
+        case(FETCH_SMURF_SUCCESS): //Sets up state upon a successful fetch!
             return({
                 smurfs:[],
                 isLoading: false
             });
-        case("FETCH_SMURF_FAIL"): //Sets up state upon a failed fetch!
+        case(FETCH_SMURF_FAIL): //Sets up state upon a failed fetch!
             return({
                 ...state,
                 error: action.payload,
                 isLoading: false
             });
-        case("ADD_SMURF"): //Sets up state when a new smurf is added in!
+        case(ADD_SMURF): //Sets up state when a new smurf is added in!
             return({
                 ...state,
                 isLoading: false,
                 error: '',
                 smurfs: [...state.smurfs, {id: Date.now(), ...action.payload}]
             });
-        case("SET_ERROR")://Sets up state when there is an error in the form!
+        case(SET_ERROR)://Sets up state when there is an error in the form!
             return ({
                 ...state,
                 isLoading: false,
