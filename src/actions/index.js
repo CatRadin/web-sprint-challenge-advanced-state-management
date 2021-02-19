@@ -19,7 +19,7 @@ export const fetchSmurfs = () => {
                 dispatch({ type: FETCH_SMURF_SUCCESS, payload: res.data })
             })
             .catch((error) => {
-                dispatch({type: FETCH_SMURF_FAIL, payload: error.Response.body.Error})
+                dispatch({type: FETCH_SMURF_FAIL, payload: 'There was an error'})
             })
     }
 }
@@ -34,8 +34,8 @@ export const addSmurf = (smurf) => {
                 dispatch( { type: ADD_SMURF, payload: smurf })
             })
             .catch((error) => {
-                console.log('Error in addSmurf:', error)
-                dispatch({ type: SET_ERROR, payload: error.Response.data.Error})
+                console.log(error)
+                dispatch({ type: SET_ERROR, payload: 'Add something into empty field'})
             })
     }
 }
