@@ -10,7 +10,7 @@ export const SET_ERROR = "SET_ERROR"
 
 //Thunk async action ----------------------------------------------------
     //This fetches smurfs from the server!
-export const fetchSmurfs () => { 
+export const fetchSmurfs = () => { 
     return dispatch => {
         dispatch({ type: FETCH_SMURF_LOADING })
         axios
@@ -25,7 +25,7 @@ export const fetchSmurfs () => {
 }
 
 //Action to add a new Smurf to the array from the server + lets the Smurf show up in the Smurf list ----------------
-export const addSmurf (smurf) => {
+export const addSmurf = (smurf) => {
     return dispatch => {
         dispatch({ type: FETCH_SMURF_LOADING })
         axios
